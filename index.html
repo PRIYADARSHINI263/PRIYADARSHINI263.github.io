@@ -4,22 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Priyadarshini's personal portfolio. B.Tech Computer Science and Information Technology student at REVA University, interested in programming, problem-solving, and software development.">
+
+    <meta name="description" content="Personal portfolio of Priyadarshini, a B.Tech Computer Science and Information Technology student at REVA University. Explore my projects, programming skills, and learning journey.">
+
     <meta name="author" content="Priyadarshini">
-    <title>Priyadarshini | Student Portfolio</title>
+    <meta name="theme-color" content="#080f25">
+
+    <title>Priyadarshini | CSIT Student Portfolio</title>
 
     <style>
-        /* ---------- GENERAL STYLES ---------- */
+        /* ==============================
+           1. GLOBAL STYLES
+        ============================== */
 
         :root {
             --bg: #080f25;
-            --bg-light: #101b3c;
+            --bg-light: #101a38;
             --card: #111d3e;
+            --card-hover: #17244a;
+
             --purple: #a78bfa;
             --purple-dark: #7c3aed;
+            --purple-light: #c4b5fd;
+
             --text: #f1f5ff;
             --muted: #b6c2e1;
+
             --border: rgba(167, 139, 250, 0.25);
+
+            --container: 1120px;
+            --radius: 18px;
         }
 
         * {
@@ -30,7 +44,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 85px;
+            scroll-padding-top: 100px;
         }
 
         body {
@@ -41,383 +55,576 @@
             overflow-x: hidden;
         }
 
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
         a {
             color: inherit;
             text-decoration: none;
         }
 
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--purple-light);
+            outline-offset: 5px;
+        }
+
         .container {
-            width: min(1100px, 90%);
-            margin: auto;
+            width: min(var(--container), 90%);
+            margin: 0 auto;
         }
 
         .section {
-            padding: 75px 0;
+            padding: 85px 0;
+            scroll-margin-top: 90px;
         }
 
         .section:nth-of-type(even) {
             background: var(--bg-light);
         }
 
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 35px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
+        .section-heading {
+            margin-bottom: 38px;
         }
 
-        .section-title span {
+        .section-number {
+            display: block;
             color: var(--purple);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: clamp(1.9rem, 4vw, 2.6rem);
+            line-height: 1.25;
+            letter-spacing: -0.7px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 650px;
+            margin-top: 12px;
         }
 
         .accent {
             color: var(--purple);
         }
 
-        /* ---------- NAVIGATION ---------- */
+        /* ==============================
+           2. NAVIGATION
+        ============================== */
 
-        header {
-            background: rgba(8, 15, 37, 0.95);
-            border-bottom: 1px solid var(--border);
+        .site-header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(12px);
+            background: rgba(8, 15, 37, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(14px);
         }
 
-        nav {
-            width: min(1100px, 90%);
-            margin: auto;
-            min-height: 72px;
+        .navbar {
+            min-height: 76px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            justify-content: space-between;
+            gap: 24px;
         }
 
         .logo {
-            font-size: 1.6rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
             font-weight: 750;
+            letter-spacing: -0.5px;
             white-space: nowrap;
         }
 
-        .logo span {
+        .logo-icon {
             color: var(--purple);
+            font-family: Consolas, monospace;
+            font-size: 1.8rem;
+            font-weight: 800;
         }
 
         .nav-links {
-            display: flex;
             list-style: none;
-            gap: 28px;
+            display: flex;
             align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .nav-links a {
+            display: inline-block;
+            padding: 9px 13px;
+            border-radius: 9px;
             color: var(--muted);
             font-size: 0.95rem;
-            transition: color 0.25s;
+            font-weight: 500;
+            transition:
+                color 0.2s ease,
+                background 0.2s ease;
         }
 
-        .nav-links a:hover,
-        .nav-links a:focus-visible {
-            color: var(--purple);
+        .nav-links a:hover {
+            color: var(--purple-light);
+            background: rgba(167, 139, 250, 0.1);
         }
 
-        /* ---------- HOME / HERO ---------- */
+        /* ==============================
+           3. HOME / HERO
+        ============================== */
 
         .hero {
-            min-height: 590px;
-            display: flex;
-            align-items: center;
-            padding: 80px 0;
+            position: relative;
+            padding: 100px 0 110px;
             background:
                 radial-gradient(
                     ellipse at 85% 25%,
-                    rgba(124, 58, 237, 0.15),
+                    rgba(124, 58, 237, 0.18),
                     transparent 45%
                 ),
                 var(--bg);
         }
 
-        .hero-content {
+        .hero-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 45px;
             align-items: center;
+            gap: 65px;
         }
 
-        .hero-tag {
-            display: inline-block;
-            color: var(--purple);
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.7rem, 6vw, 4.5rem);
-            line-height: 1.15;
-            margin-bottom: 15px;
-            letter-spacing: -1.5px;
-        }
-
-        .hero h2 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--muted);
-            margin-bottom: 18px;
-        }
-
-        .hero p {
-            max-width: 620px;
-            color: var(--muted);
-            font-size: 1.05rem;
-            margin-bottom: 25px;
-        }
-
-        .details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px 20px;
-            color: var(--muted);
-            font-size: 0.95rem;
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--purple-light);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             margin-bottom: 20px;
         }
 
-        .details span {
-            color: var(--purple);
-            margin-right: 5px;
+        .hero-label::before {
+            content: "";
+            width: 30px;
+            height: 2px;
+            background: var(--purple);
         }
 
-        .btn {
+        .hero h1 {
+            font-size: clamp(2.7rem, 6vw, 4.7rem);
+            line-height: 1.12;
+            letter-spacing: -2px;
+            margin-bottom: 18px;
+            overflow-wrap: anywhere;
+        }
+
+        .hero-subtitle {
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        .hero-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            margin-bottom: 24px;
+        }
+
+        .detail-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 12px;
+            background: rgba(167, 139, 250, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--muted);
+            font-size: 0.88rem;
+            overflow-wrap: anywhere;
+        }
+
+        .detail-pill strong {
+            color: var(--purple-light);
+            font-weight: 600;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button {
+            min-height: 48px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 12px 25px;
-            border-radius: 30px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 650;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-primary {
+            color: white;
             background: linear-gradient(
                 135deg,
                 var(--purple-dark),
-                var(--purple)
+                #9364ed
             );
-            color: #fff;
-            font-weight: 600;
-            border: 1px solid transparent;
-            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+        .button-primary:hover {
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.35);
         }
 
-        /* ---------- HERO DECORATION ---------- */
+        .button-outline {
+            color: var(--purple-light);
+            border-color: var(--border);
+            background: rgba(167, 139, 250, 0.06);
+        }
+
+        .button-outline:hover {
+            background: rgba(167, 139, 250, 0.14);
+        }
+
+        /* Decorative coding card */
 
         .hero-art {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 300px;
+            min-width: 0;
         }
 
-        .code-card {
+        .code-window {
             width: 100%;
-            max-width: 340px;
-            padding: 30px;
-            background: linear-gradient(
-                145deg,
-                #182651,
-                #101832
-            );
+            max-width: 390px;
+            padding: 28px;
             border: 1px solid var(--border);
             border-radius: 22px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(
+                145deg,
+                #182650,
+                #0e1732
+            );
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
             transform: rotate(2deg);
         }
 
-        .code-top {
+        .window-top {
             display: flex;
-            gap: 7px;
-            margin-bottom: 30px;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .dot {
+        .window-dots {
+            display: flex;
+            gap: 7px;
+        }
+
+        .window-dots span {
             width: 11px;
             height: 11px;
             border-radius: 50%;
             background: var(--purple);
         }
 
-        .code-lines {
-            font-family: Consolas, monospace;
-            font-size: 1rem;
+        .window-label {
+            color: var(--muted);
+            font-size: 0.75rem;
+        }
+
+        .code-content {
+            font-family: Consolas, "Courier New", monospace;
+            font-size: clamp(0.78rem, 1.5vw, 0.98rem);
             line-height: 2.3;
-            color: var(--muted);
-        }
-
-        .code-lines .purple {
-            color: var(--purple);
-        }
-
-        .code-lines .green {
-            color: #86efac;
-        }
-
-        .code-bottom {
-            height: 5px;
-            width: 65%;
-            margin-top: 22px;
-            border-radius: 10px;
-            background: var(--purple-dark);
-        }
-
-        /* ---------- ABOUT ---------- */
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 45px;
-            align-items: center;
-        }
-
-        .about-text p {
-            color: var(--muted);
-            font-size: 1.05rem;
-            margin-bottom: 15px;
-        }
-
-        .info-card {
-            padding: 28px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 13px 0;
-            border-bottom: 1px solid rgba(167, 139, 250, 0.12);
-        }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            color: var(--purple);
-            font-weight: 600;
-            min-width: 95px;
-        }
-
-        .info-value {
-            color: var(--muted);
             overflow-wrap: anywhere;
         }
 
-        /* ---------- PROJECTS ---------- */
+        .code-purple {
+            color: var(--purple-light);
+        }
+
+        .code-green {
+            color: #86efac;
+        }
+
+        .code-muted {
+            color: #a5b4d5;
+        }
+
+        .code-progress {
+            height: 5px;
+            width: 65%;
+            background: var(--purple-dark);
+            border-radius: 20px;
+            margin-top: 25px;
+        }
+
+        /* ==============================
+           4. ABOUT ME
+        ============================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .about-copy p {
+            color: var(--muted);
+            font-size: 1.03rem;
+            margin-bottom: 18px;
+        }
+
+        .about-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        .education-card {
+            padding: 28px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .education-card h3 {
+            color: var(--purple-light);
+            font-size: 1.15rem;
+            margin-bottom: 16px;
+        }
+
+        .education-row {
+            display: grid;
+            grid-template-columns: 100px minmax(0, 1fr);
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.13);
+        }
+
+        .education-row:last-child {
+            border-bottom: none;
+        }
+
+        .education-label {
+            color: var(--purple);
+            font-weight: 650;
+            font-size: 0.9rem;
+        }
+
+        .education-value {
+            color: var(--muted);
+            font-size: 0.95rem;
+            overflow-wrap: anywhere;
+        }
+
+        /* ==============================
+           5. PROJECTS
+        ============================== */
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 22px;
+            gap: 24px;
+            align-items: stretch;
         }
 
         .project-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            height: 100%;
+            padding: 27px;
+            border-radius: var(--radius);
             background: linear-gradient(
                 145deg,
                 var(--card),
-                #0d1733
+                #0d1732
             );
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 26px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
         }
 
         .project-card:hover {
             transform: translateY(-6px);
             border-color: var(--purple);
+            background: linear-gradient(
+                145deg,
+                var(--card-hover),
+                #0d1732
+            );
+        }
+
+        .project-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 22px;
         }
 
         .project-icon {
-            width: 52px;
-            height: 52px;
+            width: 54px;
+            height: 54px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(124, 58, 237, 0.2);
+            border-radius: 15px;
+            color: var(--purple-light);
+            background: rgba(124, 58, 237, 0.18);
             border: 1px solid var(--border);
-            color: var(--purple);
-            border-radius: 14px;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-family: Consolas, monospace;
+            font-size: 1.25rem;
+            font-weight: 750;
+        }
+
+        .project-type {
+            color: var(--purple-light);
+            background: rgba(167, 139, 250, 0.08);
+            border: 1px solid var(--border);
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-align: center;
         }
 
         .project-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             line-height: 1.4;
-            margin-bottom: 13px;
+            margin-bottom: 14px;
         }
 
         .project-card p {
             color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
+            font-size: 0.94rem;
+            line-height: 1.75;
+            margin-bottom: 22px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+            margin-bottom: 22px;
+        }
+
+        .project-tags span {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 8px;
+            background: rgba(167, 139, 250, 0.08);
+            color: #c7d2fe;
+            border: 1px solid rgba(167, 139, 250, 0.14);
+            font-size: 0.76rem;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .project-link {
-            display: flex;
+            width: 100%;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 11px 14px;
-            border: 1px solid var(--purple);
-            border-radius: 10px;
-            color: var(--purple);
-            font-weight: 600;
+            gap: 10px;
+            min-height: 47px;
+            padding: 11px 15px;
+            border-radius: 11px;
+            color: white;
+            background: var(--purple-dark);
+            border: 1px solid var(--purple-dark);
             font-size: 0.9rem;
-            transition: background 0.25s, color 0.25s;
+            font-weight: 650;
+            text-align: center;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease;
         }
 
         .project-link:hover {
-            background: var(--purple-dark);
-            color: white;
+            background: #6d28d9;
+            border-color: var(--purple);
         }
 
-        .repo-name {
+        .repo-url {
             display: block;
-            color: #9daed6;
-            font-size: 0.8rem;
-            margin-top: 12px;
+            color: #9eacd0;
+            font-size: 0.78rem;
+            line-height: 1.6;
             overflow-wrap: anywhere;
+            word-break: break-word;
         }
 
-        /* ---------- SKILLS ---------- */
+        /* ==============================
+           6. SKILLS
+        ============================== */
 
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 20px;
+            gap: 22px;
         }
 
         .skill-card {
-            padding: 25px;
-            background: var(--card);
+            min-width: 0;
+            padding: 27px;
+            border-radius: var(--radius);
             border: 1px solid var(--border);
-            border-radius: 15px;
+            background: var(--card);
         }
 
         .skill-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 18px;
-            color: var(--purple);
+            font-size: 1.12rem;
+            color: var(--purple-light);
+            margin-bottom: 20px;
         }
 
         .skill-tags {
@@ -427,196 +634,371 @@
         }
 
         .skill-tags span {
-            display: inline-block;
-            padding: 7px 14px;
+            padding: 8px 13px;
             border-radius: 30px;
+            color: var(--text);
             background: rgba(124, 58, 237, 0.15);
             border: 1px solid var(--border);
-            color: var(--text);
-            font-size: 0.88rem;
+            font-size: 0.86rem;
         }
 
-        /* ---------- CAREER GOAL ---------- */
+        /* ==============================
+           7. CAREER GOAL
+        ============================== */
 
-        .goal-box {
-            padding: 30px;
+        .goal-card {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(25px, 5vw, 42px);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: var(--radius);
             background: linear-gradient(
-                135deg,
-                rgba(124, 58, 237, 0.13),
+                120deg,
+                rgba(124, 58, 237, 0.17),
                 var(--card)
             );
         }
 
-        .goal-box p {
-            color: var(--muted);
-            font-size: 1.05rem;
+        .goal-card::after {
+            content: "</>";
+            position: absolute;
+            right: 20px;
+            bottom: -35px;
+            color: rgba(167, 139, 250, 0.06);
+            font-family: Consolas, monospace;
+            font-size: 9rem;
+            font-weight: 800;
+            pointer-events: none;
         }
 
-        /* ---------- CONTACT ---------- */
+        .goal-card p {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+            color: var(--muted);
+            font-size: 1.04rem;
+        }
+
+        /* ==============================
+           8. CONTACT
+        ============================== */
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 35px;
-            align-items: center;
+            align-items: stretch;
         }
 
-        .contact-text {
+        .contact-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-copy p {
             color: var(--muted);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            font-size: 1.02rem;
         }
 
         .contact-card {
-            padding: 28px;
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 32px;
             background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
         }
 
         .contact-card h3 {
+            font-size: 1.25rem;
+            color: var(--purple-light);
             margin-bottom: 12px;
-            color: var(--purple);
         }
 
         .contact-card p {
             color: var(--muted);
-            margin-bottom: 20px;
+            margin-bottom: 23px;
+            font-size: 0.95rem;
         }
 
-        /* ---------- FOOTER ---------- */
+        .github-profile {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--purple-light);
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
 
-        footer {
-            padding: 25px 0;
-            text-align: center;
+        .github-profile:hover {
+            color: white;
+        }
+
+        /* ==============================
+           9. FOOTER
+        ============================== */
+
+        .site-footer {
+            padding: 28px 0;
             background: #060b1b;
             border-top: 1px solid var(--border);
-            color: #9daed6;
-            font-size: 0.9rem;
+            text-align: center;
         }
 
-        footer p + p {
-            margin-top: 5px;
+        .footer-content p {
+            color: #9daed0;
+            font-size: 0.88rem;
+            margin: 5px 0;
         }
 
-        footer span {
-            color: var(--purple);
+        .footer-content span {
+            color: var(--purple-light);
         }
 
-        /* ---------- ACCESSIBILITY ---------- */
+        /* ==============================
+           10. TABLET RESPONSIVENESS
+        ============================== */
 
-        a:focus-visible {
-            outline: 2px solid var(--purple);
-            outline-offset: 5px;
-        }
-
-        /* ---------- MOBILE RESPONSIVENESS ---------- */
-
-        @media (max-width: 900px) {
-            .hero-content,
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-art {
-                min-height: 260px;
+        @media (max-width: 1000px) {
+            .hero-grid {
+                gap: 35px;
             }
 
             .projects-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
+            .projects-grid .project-card:last-child {
+                grid-column: 1 / -1;
+            }
+
+            .projects-grid .project-card:last-child .project-actions {
+                max-width: 100%;
+            }
+
             .skills-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
-        @media (max-width: 600px) {
-            .section {
-                padding: 55px 0;
+        @media (max-width: 760px) {
+            html {
+                scroll-padding-top: 130px;
             }
 
-            nav {
+            .navbar {
                 flex-direction: column;
                 justify-content: center;
-                padding: 15px 0;
-                gap: 12px;
-            }
-
-            .logo {
-                font-size: 1.4rem;
+                gap: 10px;
+                padding: 13px 0;
             }
 
             .nav-links {
                 width: 100%;
                 justify-content: center;
-                flex-wrap: wrap;
-                gap: 10px 18px;
+                gap: 5px;
             }
 
             .nav-links a {
-                font-size: 0.85rem;
+                padding: 8px 11px;
+                font-size: 0.88rem;
             }
 
             .hero {
-                padding: 55px 0;
-                min-height: auto;
+                padding: 70px 0;
             }
 
-            .hero h1 {
-                font-size: 2.6rem;
-            }
-
-            .hero h2 {
-                font-size: 1.05rem;
-            }
-
-            .hero p,
-            .about-text p,
-            .goal-box p {
-                font-size: 0.98rem;
+            .hero-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
             }
 
             .hero-art {
-                min-height: 230px;
+                min-height: 270px;
             }
 
-            .code-card {
-                max-width: 290px;
-                padding: 24px;
+            .code-window {
+                max-width: 380px;
+            }
+
+            .about-grid {
+                gap: 28px;
+            }
+
+            .education-card {
+                max-width: 100%;
+            }
+        }
+
+        /* ==============================
+           11. MOBILE RESPONSIVENESS
+        ============================== */
+
+        @media (max-width: 520px) {
+            .container {
+                width: 90%;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-heading {
+                margin-bottom: 28px;
             }
 
             .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 25px;
+                font-size: 1.9rem;
+            }
+
+            .logo {
+                font-size: 1.35rem;
+            }
+
+            .logo-icon {
+                font-size: 1.55rem;
+            }
+
+            .nav-links {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                justify-content: center;
+                gap: 4px;
+            }
+
+            .nav-links a {
+                font-size: 0.82rem;
+                padding: 7px 10px;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 55px 0 65px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.35rem, 11vw, 3.3rem);
+                letter-spacing: -1.2px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.02rem;
+            }
+
+            .hero-description {
+                font-size: 0.96rem;
+            }
+
+            .hero-details {
+                gap: 9px;
+            }
+
+            .detail-pill {
+                font-size: 0.8rem;
+                padding: 7px 10px;
+            }
+
+            .button-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .hero-art {
+                min-height: 220px;
+            }
+
+            .code-window {
+                max-width: 310px;
+                padding: 22px;
+            }
+
+            .code-content {
+                font-size: 0.78rem;
+            }
+
+            .about-copy p,
+            .contact-copy p {
+                font-size: 0.96rem;
+            }
+
+            .education-card {
+                padding: 21px;
+            }
+
+            .education-row {
+                grid-template-columns: 1fr;
+                gap: 3px;
+                padding: 12px 0;
             }
 
             .projects-grid,
             .skills-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
             }
 
-            .info-card,
-            .project-card,
-            .skill-card,
+            .projects-grid .project-card:last-child {
+                grid-column: auto;
+            }
+
+            .project-card {
+                padding: 23px;
+            }
+
+            .project-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-card p {
+                font-size: 0.93rem;
+            }
+
+            .project-link {
+                min-height: 49px;
+            }
+
+            .repo-url {
+                font-size: 0.75rem;
+            }
+
+            .skill-card {
+                padding: 23px;
+            }
+
+            .goal-card {
+                padding: 25px;
+            }
+
+            .goal-card p {
+                font-size: 0.96rem;
+            }
+
+            .goal-card::after {
+                font-size: 5rem;
+                right: 8px;
+                bottom: -20px;
+            }
+
             .contact-card {
-                padding: 22px;
+                padding: 24px;
             }
 
-            .info-row {
-                flex-direction: column;
-                gap: 3px;
-            }
-
-            .info-label {
-                min-width: 0;
+            .footer-content p {
+                font-size: 0.8rem;
             }
         }
+
+        /* ==============================
+           12. REDUCED MOTION
+        ============================== */
 
         @media (prefers-reduced-motion: reduce) {
             html {
@@ -626,8 +1008,8 @@
             *,
             *::before,
             *::after {
-                transition-duration: 0.01ms !important;
                 animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -635,11 +1017,16 @@
 
 <body>
 
-    <!-- NAVIGATION BAR -->
-    <header>
-        <nav aria-label="Main navigation">
+    <!-- ==============================
+         NAVIGATION
+    ============================== -->
+
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+
             <a href="#home" class="logo">
-                <span>&lt;/&gt;</span> Priyadarshini
+                <span class="logo-icon" aria-hidden="true">&lt;/&gt;</span>
+                Priyadarshini
             </a>
 
             <ul class="nav-links">
@@ -647,84 +1034,166 @@
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#goals">Goals</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+
         </nav>
     </header>
 
     <main>
 
-        <!-- HOME SECTION -->
-        <section id="home" class="hero">
-            <div class="container hero-content">
+        <!-- ==============================
+             HOME
+        ============================== -->
 
-                <div>
-                    <span class="hero-tag">HELLO, I'M</span>
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <span class="hero-label">
+                        HELLO, I'M
+                    </span>
 
                     <h1>
                         Priyadarshini<span class="accent">.</span>
                     </h1>
 
-                    <h2>
+                    <h2 class="hero-subtitle">
                         B.Tech Computer Science and Information Technology
                     </h2>
 
-                    <div class="details">
-                        <div><span>University:</span> REVA University</div>
-                        <div><span>Semester:</span> 3rd Semester</div>
-                        <div><span>SRN:</span> R25EJ111</div>
+                    <div class="hero-details">
+
+                        <span class="detail-pill">
+                            <strong>University:</strong>
+                            REVA University
+                        </span>
+
+                        <span class="detail-pill">
+                            <strong>Semester:</strong>
+                            3rd Semester
+                        </span>
+
+                        <span class="detail-pill">
+                            <strong>SRN:</strong>
+                            R25EJ111
+                        </span>
+
                     </div>
 
-                    <p>
-                        I am a third-semester B.Tech student at REVA
-                        University. I am interested in programming,
+                    <p class="hero-description">
+                        I am a third-semester B.Tech student at
+                        REVA University. I am interested in programming,
                         problem-solving, and software development.
-                        I am on a journey to build my skills, learn
-                        new technologies, and create meaningful projects.
+                        Coming from a biology background, I started
+                        learning computer science from the basics
+                        and continue to develop my technical skills
+                        through coursework, coding practice, and projects.
                     </p>
 
-                    <a href="#projects" class="btn">
-                        Explore My Work <span aria-hidden="true">↓</span>
-                    </a>
+                    <div class="button-row">
+
+                        <a href="#projects" class="button button-primary">
+                            Explore My Projects
+                            <span aria-hidden="true">↓</span>
+                        </a>
+
+                        <a href="#about" class="button button-outline">
+                            About Me
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <!-- Decorative coding illustration made with HTML/CSS -->
+                <!-- Decorative coding illustration -->
+
                 <div class="hero-art" aria-hidden="true">
-                    <div class="code-card">
-                        <div class="code-top">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
+
+                    <div class="code-window">
+
+                        <div class="window-top">
+
+                            <div class="window-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span class="window-label">
+                                learning.cpp
+                            </span>
+
                         </div>
 
-                        <div class="code-lines">
-                            <div><span class="purple">#include</span> &lt;iostream&gt;</div>
-                            <div><span class="purple">int</span> main() {</div>
-                            <div>&nbsp;&nbsp;<span class="green">learn</span>();</div>
-                            <div>&nbsp;&nbsp;<span class="green">practice</span>();</div>
-                            <div>&nbsp;&nbsp;<span class="green">build</span>();</div>
-                            <div>&nbsp;&nbsp;<span class="purple">return</span> 0;</div>
+                        <div class="code-content">
+
+                            <div>
+                                <span class="code-purple">#include</span>
+                                &lt;iostream&gt;
+                            </div>
+
+                            <div>
+                                <span class="code-purple">int</span>
+                                main() {
+                            </div>
+
+                            <div>
+                                &nbsp;&nbsp;
+                                <span class="code-green">learn</span>();
+                            </div>
+
+                            <div>
+                                &nbsp;&nbsp;
+                                <span class="code-green">practice</span>();
+                            </div>
+
+                            <div>
+                                &nbsp;&nbsp;
+                                <span class="code-green">build</span>();
+                            </div>
+
+                            <div>
+                                &nbsp;&nbsp;
+                                <span class="code-purple">return</span>
+                                0;
+                            </div>
+
                             <div>}</div>
+
                         </div>
 
-                        <div class="code-bottom"></div>
+                        <div class="code-progress"></div>
+
                     </div>
+
                 </div>
 
             </div>
         </section>
 
-        <!-- ABOUT ME SECTION -->
+        <!-- ==============================
+             ABOUT ME
+        ============================== -->
+
         <section id="about" class="section">
             <div class="container">
 
-                <h2 class="section-title">
-                    <span>01.</span> About Me
-                </h2>
+                <div class="section-heading">
+                    <span class="section-number">01 / ABOUT</span>
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-description">
+                        My background, education, and learning journey
+                        in computer science.
+                    </p>
+                </div>
 
                 <div class="about-grid">
 
-                    <div class="about-text">
+                    <div class="about-copy">
+
                         <p>
                             I am a third-semester B.Tech student at
                             REVA University, pursuing Computer Science
@@ -734,68 +1203,100 @@
                         <p>
                             Coming from a biology background, I started
                             learning computer science from the basics.
-                            My journey has involved learning programming,
-                            understanding fundamental concepts, and
-                            practising through coursework and coding
-                            problems.
-                        </p>
-
-                        <p>
-                            Through my projects and coding practice,
                             I have been developing my technical skills
-                            and learning about collaboration, problem-solving,
-                            and software development.
+                            through coursework, programming practice,
+                            and personal projects.
                         </p>
 
                         <p>
-                            I believe in consistent learning and improving
-                            my fundamentals one step at a time.
+                            My learning journey includes programming
+                            in C and C++, understanding data structures,
+                            solving coding problems, and learning to
+                            use Git and GitHub for managing my work.
                         </p>
+
+                        <p>
+                            I am interested in problem-solving and
+                            software development, and I continue to
+                            improve my fundamentals through consistent
+                            practice and learning.
+                        </p>
+
                     </div>
 
-                    <div class="info-card">
-                        <div class="info-row">
-                            <div class="info-label">Course</div>
-                            <div class="info-value">
-                                B.Tech Computer Science and Information
-                                Technology
-                            </div>
+                    <div class="education-card">
+
+                        <h3>Education Details</h3>
+
+                        <div class="education-row">
+                            <span class="education-label">Course</span>
+                            <span class="education-value">
+                                B.Tech Computer Science and
+                                Information Technology
+                            </span>
                         </div>
 
-                        <div class="info-row">
-                            <div class="info-label">University</div>
-                            <div class="info-value">REVA University</div>
+                        <div class="education-row">
+                            <span class="education-label">University</span>
+                            <span class="education-value">
+                                REVA University
+                            </span>
                         </div>
 
-                        <div class="info-row">
-                            <div class="info-label">Semester</div>
-                            <div class="info-value">3rd Semester</div>
+                        <div class="education-row">
+                            <span class="education-label">Semester</span>
+                            <span class="education-value">
+                                3rd Semester
+                            </span>
                         </div>
 
-                        <div class="info-row">
-                            <div class="info-label">SRN</div>
-                            <div class="info-value">R25EJ111</div>
+                        <div class="education-row">
+                            <span class="education-label">SRN</span>
+                            <span class="education-value">
+                                R25EJ111
+                            </span>
                         </div>
+
                     </div>
 
                 </div>
+
             </div>
         </section>
 
-        <!-- PROJECTS SECTION -->
+        <!-- ==============================
+             PROJECTS
+        ============================== -->
+
         <section id="projects" class="section">
             <div class="container">
 
-                <h2 class="section-title">
-                    <span>02.</span> My Projects
-                </h2>
+                <div class="section-heading">
+                    <span class="section-number">02 / PROJECTS</span>
+                    <h2 class="section-title">My Projects</h2>
+                    <p class="section-description">
+                        A collection of my programming practice,
+                        GitHub work, and collaborative learning.
+                    </p>
+                </div>
 
                 <div class="projects-grid">
 
                     <!-- PROJECT 1 -->
+
                     <article class="project-card">
-                        <div class="project-icon" aria-hidden="true">
-                            &lt;/&gt;
+
+                        <div class="project-top">
+
+                            <div class="project-icon"
+                                 aria-hidden="true">
+                                &lt;/&gt;
+                            </div>
+
+                            <span class="project-type">
+                                GitHub Portfolio
+                            </span>
+
                         </div>
 
                         <h3>Student Grade Calculator</h3>
@@ -808,26 +1309,47 @@
                             in maintaining a programming repository.
                         </p>
 
-                        <a
-                            class="project-link"
-                            href="https://github.com/PRIYADARSHINI263/student_grade_calculator"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="View Student Grade Calculator repository on GitHub"
-                        >
-                            View Repository
-                            <span aria-hidden="true">↗</span>
-                        </a>
+                        <div class="project-tags">
+                            <span>Git</span>
+                            <span>GitHub</span>
+                        </div>
 
-                        <span class="repo-name">
-                            github.com/PRIYADARSHINI263/student_grade_calculator
-                        </span>
+                        <div class="project-actions">
+
+                            <a
+                                class="project-link"
+                                href="https://github.com/PRIYADARSHINI263/student_grade_calculator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="View Student Grade Calculator on GitHub"
+                            >
+                                View GitHub Repository
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <span class="repo-url">
+                                github.com/PRIYADARSHINI263/student_grade_calculator
+                            </span>
+
+                        </div>
+
                     </article>
 
                     <!-- PROJECT 2 -->
+
                     <article class="project-card">
-                        <div class="project-icon" aria-hidden="true">
-                            { }
+
+                        <div class="project-top">
+
+                            <div class="project-icon"
+                                 aria-hidden="true">
+                                { }
+                            </div>
+
+                            <span class="project-type">
+                                Collaboration
+                            </span>
+
                         </div>
 
                         <h3>Pair Programming Collaboration</h3>
@@ -835,31 +1357,53 @@
                         <p>
                             I worked collaboratively with a teammate
                             on the Simple Line Editor project.
-                            Through this experience, I learned about
-                            teamwork, sharing code, and using GitHub
-                            to collaborate on programming work.
+                            This experience helped me learn about
+                            teamwork, sharing code, and using
+                            GitHub to collaborate on programming work.
                         </p>
 
-                        <a
-                            class="project-link"
-                            href="https://github.com/PRIYADARSHINI263/SimpleLineEditor"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="View Simple Line Editor repository on GitHub"
-                        >
-                            View Repository
-                            <span aria-hidden="true">↗</span>
-                        </a>
+                        <div class="project-tags">
+                            <span>Teamwork</span>
+                            <span>GitHub</span>
+                            <span>Pair Programming</span>
+                        </div>
 
-                        <span class="repo-name">
-                            github.com/PRIYADARSHINI263/SimpleLineEditor
-                        </span>
+                        <div class="project-actions">
+
+                            <a
+                                class="project-link"
+                                href="https://github.com/PRIYADARSHINI263/SimpleLineEditor"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="View Simple Line Editor on GitHub"
+                            >
+                                View GitHub Repository
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <span class="repo-url">
+                                github.com/PRIYADARSHINI263/SimpleLineEditor
+                            </span>
+
+                        </div>
+
                     </article>
 
                     <!-- PROJECT 3 -->
+
                     <article class="project-card">
-                        <div class="project-icon" aria-hidden="true">
-                            &lt;/&gt;
+
+                        <div class="project-top">
+
+                            <div class="project-icon"
+                                 aria-hidden="true">
+                                &lt;/&gt;
+                            </div>
+
+                            <span class="project-type">
+                                Coding Practice
+                            </span>
+
                         </div>
 
                         <h3>LeetCode Solutions</h3>
@@ -868,127 +1412,176 @@
                             I maintain a repository of coding practice
                             problems involving arrays and strings,
                             basic algorithms, linked lists, and stacks.
-                            It helps me practise programming and
-                            strengthen my problem-solving fundamentals.
+                            This repository supports my ongoing
+                            programming practice and problem-solving
+                            fundamentals.
                         </p>
 
-                        <a
-                            class="project-link"
-                            href="https://github.com/PRIYADARSHINI263/leetcode-solutions"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="View LeetCode Solutions repository on GitHub"
-                        >
-                            View Repository
-                            <span aria-hidden="true">↗</span>
-                        </a>
+                        <div class="project-tags">
+                            <span>C++</span>
+                            <span>Arrays & Strings</span>
+                            <span>Linked Lists</span>
+                            <span>Stacks</span>
+                        </div>
 
-                        <span class="repo-name">
-                            github.com/PRIYADARSHINI263/leetcode-solutions
-                        </span>
+                        <div class="project-actions">
+
+                            <a
+                                class="project-link"
+                                href="https://github.com/PRIYADARSHINI263/leetcode-solutions"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="View LeetCode Solutions on GitHub"
+                            >
+                                View GitHub Repository
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                            <span class="repo-url">
+                                github.com/PRIYADARSHINI263/leetcode-solutions
+                            </span>
+
+                        </div>
+
                     </article>
 
                 </div>
+
             </div>
         </section>
 
-        <!-- SKILLS SECTION -->
+        <!-- ==============================
+             SKILLS
+        ============================== -->
+
         <section id="skills" class="section">
             <div class="container">
 
-                <h2 class="section-title">
-                    <span>03.</span> Technical Skills
-                </h2>
+                <div class="section-heading">
+                    <span class="section-number">03 / SKILLS</span>
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-description">
+                        Programming languages, concepts, and tools
+                        I have been learning and practising.
+                    </p>
+                </div>
 
                 <div class="skills-grid">
 
                     <div class="skill-card">
+
                         <h3>Programming Languages</h3>
+
                         <div class="skill-tags">
                             <span>C</span>
                             <span>C++</span>
                         </div>
+
                     </div>
 
                     <div class="skill-card">
+
                         <h3>Data Structures & Concepts</h3>
+
                         <div class="skill-tags">
                             <span>Basic Data Structures</span>
                             <span>Arrays</span>
                             <span>Pointers</span>
                             <span>Structures</span>
                         </div>
+
                     </div>
 
                     <div class="skill-card">
-                        <h3>Tools</h3>
+
+                        <h3>Tools & Technologies</h3>
+
                         <div class="skill-tags">
                             <span>Git</span>
                             <span>GitHub</span>
                             <span>Visual Studio Code</span>
                         </div>
+
                     </div>
 
                 </div>
+
             </div>
         </section>
 
-        <!-- CAREER GOAL SECTION -->
+        <!-- ==============================
+             CAREER GOAL
+        ============================== -->
+
         <section id="goals" class="section">
             <div class="container">
 
-                <h2 class="section-title">
-                    <span>04.</span> My Career Goal
-                </h2>
+                <div class="section-heading">
+                    <span class="section-number">04 / CAREER GOAL</span>
+                    <h2 class="section-title">My Career Goal</h2>
+                </div>
 
-                <div class="goal-box">
+                <div class="goal-card">
+
                     <p>
-                        My goal is to strengthen my programming fundamentals,
-                        practise data structures and algorithms, participate
-                        in hackathons, and build practical projects.
-                        I am working towards preparing for software
-                        development internships and continuing to grow
-                        as a computer science student.
+                        My goal is to improve my programming fundamentals,
+                        practise data structures and algorithms,
+                        participate in hackathons, and build practical
+                        projects. I am working towards preparing for
+                        software development internships while continuing
+                        to learn and grow as a computer science student.
                     </p>
+
                 </div>
 
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
+        <!-- ==============================
+             CONTACT
+        ============================== -->
+
         <section id="contact" class="section">
             <div class="container">
 
-                <h2 class="section-title">
-                    <span>05.</span> Get In Touch
-                </h2>
+                <div class="section-heading">
+                    <span class="section-number">05 / CONTACT</span>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-description">
+                        Connect with me through my GitHub profile
+                        to explore my repositories and coding practice.
+                    </p>
+                </div>
 
                 <div class="contact-grid">
 
-                    <div>
-                        <p class="contact-text">
-                            I am interested in learning, programming,
-                            and connecting with others who share an
-                            interest in technology and software development.
+                    <div class="contact-copy">
+
+                        <p>
+                            I am interested in programming,
+                            problem-solving, and learning more
+                            about software development.
                         </p>
 
-                        <p class="contact-text">
-                            You can explore my coding practice,
-                            repositories, and ongoing learning journey
-                            through my GitHub profile.
+                        <p>
+                            This portfolio reflects my current
+                            learning journey as a third-semester
+                            computer science student.
                         </p>
+
                     </div>
 
                     <div class="contact-card">
+
                         <h3>GitHub Profile</h3>
 
                         <p>
-                            Visit my GitHub profile to explore my
-                            repositories and programming practice.
+                            Explore my repositories, programming
+                            practice, and projects on GitHub.
                         </p>
 
                         <a
-                            class="btn"
+                            class="button button-primary"
                             href="https://github.com/PRIYADARSHINI263"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -996,17 +1589,24 @@
                             Visit My GitHub
                             <span aria-hidden="true">↗</span>
                         </a>
+
                     </div>
 
                 </div>
+
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
             <p>
                 © 2026 <span>Priyadarshini</span> |
                 B.Tech CSIT | REVA University
@@ -1016,7 +1616,9 @@
                 Built with HTML and CSS.
                 <span>Keep learning. Keep building.</span>
             </p>
+
         </div>
+
     </footer>
 
 </body>
